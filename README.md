@@ -24,4 +24,82 @@ typescript는 타입이 정해지지 않았을때 변수에 할당된 값의 타
         consolo.log(text)
     }
 
-    
+객체를 리턴해줘야 할 경우
+
+    function getStudentDetails(studentID : number):{
+        studentID:number;
+        studentName:string;
+        age:number;
+        gendet:string;
+        subject:string;
+        createDate:Date; <- 객체들을 지정해줘야 한다.
+    }  {
+        return null;
+    }
+
+하지만 이렇게 지정해주면 코드의 가독성이 떨어진다. 그러면 어떻게 할까?
+
+# 인터페이스
+우리가 타입을 만들 수 있게 해주는 도구이다.
+
+    interface Student { <- ☆무조건 앞글자는 대문자여야 한다.
+        studentID:number;
+        studentName:string;
+        age:number;
+        gendet:string;
+        subject:string;
+        createDate:Date ;
+    }    <- Student라는 타입이 생겼고, 위애 객체 형식을 가지고 있음.
+
+    function getStudentDetails(studentID : number):Student {
+        return {
+            studentID :12345,
+            studentName : "임동현",
+            age:21,
+            gendet : "femail",
+            subject : "javascript",
+            courseCompleted : true 
+        };
+    }
+
+다음과 같이 코드를 효율적으로 쓸 수 있다. 
+리턴해주는 값은 Student 타입의 형식과 똑같아야 한다(아니면 오류가 뜸.). 하지만 선택적 프로퍼티 때문에 꼭 그런건 아니다.
+
+# 선택적 프로퍼티
+
+    interface Student {
+        studentID:number;
+        studentName:string;
+        age?:number; <- 다음과 같이 변수 앞에 ?를 붙혀줌으로써 age값은 반환 해줘도 되고 안해줘도 되는 변수가 되었다.
+        gendet:string;
+        subject:string;
+        createDate:Date ;
+    }
+
+# 메소드
+객체 내에서 생성된 함수 이다.
+
+    interface Student {
+        studentID:number;
+        studentName:string;
+        age?:number; <- 다음과 같이 변수 앞에 ?를 붙혀줌으로써 age값은 반환 해줘도 되고 안해줘도 되는 변수가 되었다.
+        gendet:string;
+        subject:string;
+        createDate:Date ;
+        // addComment (comment : string) : string;
+        addComment : (comment : string) => string; // <- 둘이 같은 기능의 함수인데 나는 밑에 형식이 더 나은거 같다.
+    }
+
+다음과 같이 메소드를 생성한다.
+
+# readonly 속성 
+어떤 값을 바꿀 수도 없고, 읽을 수만 있게끔 해주는 속성이다.
+
+    interface Student {
+        readonly studentID:number; <- 이렇게 타입 같이 앞에 readonly를 붙혀주면 된다.
+        studentName:string;
+        age:number;
+        gendet:string;
+        subject:string;
+        courseCompleted : boolean;
+    }
