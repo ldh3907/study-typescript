@@ -16,11 +16,16 @@ var age = 21;
 var gendet = "femail";
 var subject = "javascript";
 var courseCompleted = false;
+var GenderType;
+(function (GenderType) {
+    GenderType["Male"] = "male";
+    GenderType["Female"] = "female";
+})(GenderType || (GenderType = {}));
 var studentDetail = {
     studentID: 12345,
     studentName: "임동현",
     age: 17,
-    gendet: "male",
+    gender: 'male',
     subject: "javascript",
     courseCompleted: true
 };

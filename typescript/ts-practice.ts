@@ -20,24 +20,29 @@ let gendet:string = "femail";
 let subject:string = "javascript"
 let courseCompleted:boolean = false;
 
-let studentDetail = {
+enum GenderType { // <- 숫자 열거형
+  Male ='male', 
+  Female ='female'
+}
+
+let studentDetail: Student = {
     studentID :12345,
     studentName : "임동현",
     age:17,
-    gendet : "male",
+    gender : 'male',
     subject : "javascript",
     courseCompleted : true
 }
 
-interface Student {
-  readonly studentID:number;
-  studentName:string;
-  age:number;
-  gendet:string;
-  subject:string;
+interface Student { //<- 인터페이스
+  readonly studentID:number,
+  studentName:string,
+  age?:number, //<- 선택적 프로퍼티
+  gender: 'male' | 'female',
+  subject:string,
   courseCompleted : boolean;
   // addComment (comment : string) : string;
-  addComment?: (comment : string) => string; // <- 둘이 같은 기능의 함수인데 나는 밑에 형식이 더 나은거 같다.
+  addComment?: (comment : string) => string; //<- 메소드, <- 둘이 같은 기능의 함수인데 나는 밑에 형식이 더 나은거 같다.
 }
 
 function getStudentDetails(studentID : number):Student {

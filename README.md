@@ -103,3 +103,39 @@ typescript는 타입이 정해지지 않았을때 변수에 할당된 값의 타
         subject:string;
         courseCompleted : boolean;
     }
+
+# enum 숫자 열거형
+연관된 아이템들을 함께 묶어서 표현 할 수 있는 수단이다.
+
+    enum GenderType { <- enum 타입을 주고 다음과 같이 객체안에 여러 아이템을 지정해준다.
+        Male,
+        Female,
+    }
+
+    interface Student { //<- 인터페이스
+        readonly studentID:number;
+        studentName:string;
+        age?:number; //<- 선택적 프로퍼티
+        gender: GenderType; <- 이렇게 활용한다. 만약에 GenderType의 Male, Female 아이템이 아닌 다른 아이템이 들어가면 오류가 뜬다.
+        subject:string;
+        courseCompleted : boolean;
+    }
+
+이대로 콘솔을 찍으면 gender은 0이 나온다. 이유는 아이템들의 값을 우리가 정해주지 않았기 때문에 타입스크립트에서 자동으로 넣어준다. 아이템들이 만들어진 순서로 값을 넣어준다. 값을 지정해주려면 이렇게 하면 된다.
+
+    enum GenderType {
+        Male ="male", 
+        Female ="female"
+    }
+
+# 리터럴 타입
+앞서 말했던 숫자 열거형을 더 심플하게 쓸 수 있게 해주는 방법
+
+    interface Student { //<- 인터페이스
+        readonly studentID:number;
+        studentName:string;
+        age?:number; //<- 선택적 프로퍼티
+        gender: "male" | "female", <- 이렇게 GenderType 의 아이템들의 값을 사이에 | 을 넣으면서 쓴다.(존재하지 않는 값을 쓰면 오류가 뜸.)
+        subject:string;
+        courseCompleted : boolean;
+    }
