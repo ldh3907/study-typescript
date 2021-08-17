@@ -139,3 +139,51 @@ typescript는 타입이 정해지지 않았을때 변수에 할당된 값의 타
         subject:string;
         courseCompleted : boolean;
     }
+
+# any 타입
+아무 타입이나 다 할당 가능 하게 해주는 타입이다.
+
+    let someValue: any = 5; <- 다음과 any 타입을 지정해주고 숫자 타입을 넘겨주면
+    someValue = "string"; <- 연관없는 아무 타입이나 넣어도 오류가 뜨지 않는다.
+
+이런식으로 any 타입을 사용한다. 하지만 정보를 명확히 명시해줘야하는 타입스크립트 특성상 코드에서 any 타입은 가급적 사용하지 않는게 좋다. 이럴때 사용하는게 있다.
+
+# 유니언타입
+쉽게 설명하면 타입을 2개 이상 지정해주는 것이다.
+
+    let price : number | string // <- 넘버타입, 문자열 타입 지정
+    price = "hello"; <- 오류가 안난다.
+    price = 1; <- 오류가 안난다.
+    price =  true; <- boolean 타입은 지정안해줬으므로 오류가 뜸.
+
+하지만 타입을 여러곳에 지정해주게 되면 유니언 타입도 비효율적이 된다. 또 이럴때 사용하는게 있다.
+
+# Type Aliases 
+2개 이상의 타입을 하나의 타입으로 묶고 싶을때 사용한다.
+
+    type StrOrNum = number | string <- 이렇게 지정해준다.
+
+이런식으로 사용한다.
+
+# 타입 가드
+
+    type StrOrNum = number | string; <- Type Aliases
+
+    let itemPrice : number; < - 숫자형 타입으로 지정
+
+    const setItemPrice = (price : StrOrNum) : void => {
+        itemPrice = price; <- 이렇게 하면 오류가 난다.(itemPrice는 숫자만 받는데, price는 숫자, 문자열을 반환 하기 때문)
+    }
+
+Type Aliases 를 사용할때 이런식으로 오류가 날 수도 있다. 이럴때 주로 막는 방식이 타입가드이다.
+
+    const setItemPrice = (price : StrOrNum) : void => {
+        if(typeof price === "string"){ //<- 타입 가드
+            itemPrice = 0;
+        }   
+        else {
+            itemPrice = price;
+        }
+    }
+
+이런식으로 타입가드를 한다.

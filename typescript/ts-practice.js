@@ -36,3 +36,16 @@ function saveStudentDetails(student) {
     console.log("ID :" + student.studentID, student);
 }
 saveStudentDetails(studentDetail);
+var someValue; // <- any 타입
+var price; // <- 유니언 타입
+price = "hello";
+price = 1;
+var itemPrice;
+var setItemPrice = function (price) {
+    if (typeof price === "string") { //<- 타입 가드
+        itemPrice = 0;
+    }
+    else {
+        itemPrice = price;
+    }
+};

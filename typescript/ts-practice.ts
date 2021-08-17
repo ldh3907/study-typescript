@@ -55,4 +55,21 @@ function saveStudentDetails(student:Student) : void {
 
 saveStudentDetails(studentDetail)
 
+let someValue: any; // <- any 타입
+let price : number | string // <- 유니언 타입
+price = "hello";
+price = 1;
+// price =  true;
 
+type StrOrNum = number | string; //<= Type Aliases
+
+let itemPrice : number;
+
+const setItemPrice = (price : StrOrNum) : void => {
+  if(typeof price === "string"){ //<- 타입 가드
+    itemPrice = 0;
+  }
+  else {
+    itemPrice = price;
+  }
+}
