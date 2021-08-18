@@ -187,3 +187,54 @@ Type Aliases 를 사용할때 이런식으로 오류가 날 수도 있다. 이�
     }
 
 이런식으로 타입가드를 한다.
+
+# class 
+관련있는 변수와 함수끼리 묶을 수 있는 수단이다. 클래스가 있게 되면, 클래스 속에서 정의된 함수들은 클래스 내 정의된 변수들에게 접근 가능해진다.
+
+    let fullName : string;
+    let personAge : number;
+    let jobTitle :string;
+    let hourlyRate : number;
+    let workingHoursPerWeek : number;
+  
+    printEmployeeDetails =(fullName : string, jobTitle :string, hourlyRate : number,workingHoursPerWeek : number ):void =>{
+        console.log(`${this.fullName}의 직업은 ${this.jobTitle} 이고, 일주일의 수입은 ${this.hourlyRate * this.workingHoursPerWeek} 달러이다.`)
+    }
+
+이런식의 코드가 있으면,
+
+    class Employee {
+        fullName : string;
+        personAge : number;
+        jobTitle :string;
+        hourlyRate : number;
+        workingHoursPerWeek : number;
+        
+        printEmployeeDetails =():void =>{
+            console.log(`${this.fullName}의 직업은 ${this.    jobTitle} 이고, 일주일의 수입은 ${this.hourlyRate * this.workingHoursPerWeek} 달러이다.`) <-- 이런식으로 파라메터에 접근이 가능하다.
+        }
+    }
+
+이런식으로 묶을 수 있다. 그리고 클래스를 쓰면 let을 쓸 필요가 없다.
+
+# Property
+클래스 내에 정의된 변수
+
+
+# 클래스의 인스턴스 
+쉽게 설명하자면 클래스 밖에서 변수를 선언해서 변수에다가 클래스를 할당해주는 것이다.
+
+    let employee1 = new Employee();
+    employee1.printEmployeeDetails();
+
+이런식으로 클라스를 할당해서 활용한다. 하지만 콘솔을 찍으면 이상하게 나온다. 이유는 클래스 내의 프로퍼티들을 안사용해줬기 때문이다.
+
+    let employee1 = new Employee();
+    employee1.fullName = "동현";
+    employee1.personAge = 28;
+    employee1.jobTitle = "주니어 웹개발자";
+    employee1.hourlyRate = 48;
+    employee1.workingHoursPerWeek = 35;
+    employee1.printEmployeeDetails();
+
+이런식으로 하면 이제 결과가 잘나온다.
