@@ -90,3 +90,17 @@ class Person4 implements IPerson4 {
 let jack3: Person4 = new Person4("jack", 21);
 
 console.log(jack3);
+
+abstract class abstractPerson5 {
+  abstract name: string;
+  constructor(public age?: number) {}
+}
+
+class Person5 extends abstractPerson5 {
+  constructor(public name: string, age?: number) {
+    super(age);
+  }
+}
+
+let jack5: Person5 = new Person5("jack", 32);
+console.log(jack5);
