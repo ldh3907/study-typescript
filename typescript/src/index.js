@@ -87,3 +87,15 @@ var Person5 = /** @class */ (function (_super) {
 }(abstractPerson5));
 var jack5 = new Person5("jack", 32);
 console.log(jack5);
+var A = /** @class */ (function () {
+    function A() {
+    }
+    A.initValue = 1;
+    return A;
+}());
+var initVal = A.initValue;
+console.log(initVal);
+//type conversion
+var TCperson = { name: "jack", age: 32 };
+var TCpersonName = TCperson.name;
+console.log(TCpersonName);

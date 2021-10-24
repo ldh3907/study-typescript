@@ -104,3 +104,15 @@ class Person5 extends abstractPerson5 {
 
 let jack5: Person5 = new Person5("jack", 32);
 console.log(jack5);
+
+class A {
+  static initValue = 1;
+}
+
+let initVal = A.initValue;
+console.log(initVal);
+
+//type conversion
+let TCperson: object = { name: "jack", age: 32 };
+let TCpersonName = (<{ name: string }>TCperson).name;
+console.log(TCpersonName);
