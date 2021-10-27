@@ -32,10 +32,12 @@ var Container = /** @class */ (function () {
 var numberContainer = new Container(1);
 var stringContainer = new Container("hello world");
 var ai = { name: "sada", age: 12 };
-function printMe(me) {
-    console.log(me.etc ? me.name + " " + me.etc + " " + me.etc : me.name + " " + me.etc);
-}
-printMe({ name: "ASdad", age: 12, etc: true });
+// function printMe(me: { name: string; age: number; etc?: boolean }) {
+//   console.log(
+//     me.etc ? `${me.name} ${me.etc} ${me.etc}` : `${me.name} ${me.etc}`
+//   );
+// }
+// printMe({ name: "ASdad", age: 12, etc: true });
 var Person1 = /** @class */ (function () {
     function Person1() {
     }
@@ -99,3 +101,15 @@ console.log(initVal);
 var TCperson = { name: "jack", age: 32 };
 var TCpersonName = TCperson.name;
 console.log(TCpersonName);
+var obj = { name: "jack" };
+var name1 = obj.name;
+var name2 = obj.name;
+console.log(name1, name2);
+function add(a, b) {
+    return a + b;
+}
+var printMe = function (name, age) { };
+var f = function (name, age) {
+    console.log(name);
+};
+f("asasa", 122112);

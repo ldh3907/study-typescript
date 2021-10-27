@@ -1,4 +1,5 @@
 import { timeStamp } from "console";
+import INameble from "./INameBle";
 
 //타입 주석과 타입추론
 let n: number = 1;
@@ -44,13 +45,13 @@ let ai: {
   etc?: boolean;
 } = { name: "sada", age: 12 };
 
-function printMe(me: { name: string; age: number; etc?: boolean }) {
-  console.log(
-    me.etc ? `${me.name} ${me.etc} ${me.etc}` : `${me.name} ${me.etc}`
-  );
-}
+// function printMe(me: { name: string; age: number; etc?: boolean }) {
+//   console.log(
+//     me.etc ? `${me.name} ${me.etc} ${me.etc}` : `${me.name} ${me.etc}`
+//   );
+// }
 
-printMe({ name: "ASdad", age: 12, etc: true });
+// printMe({ name: "ASdad", age: 12, etc: true });
 
 class Person1 {
   name: string;
@@ -116,3 +117,45 @@ console.log(initVal);
 let TCperson: object = { name: "jack", age: 32 };
 let TCpersonName = (<{ name: string }>TCperson).name;
 console.log(TCpersonName);
+
+let obj: object = { name: "jack" };
+
+let name1 = (<INameble>obj).name;
+let name2 = (obj as INameble).name;
+console.log(name1, name2);
+
+// function add(a: number, b: number): number {
+//   return a + b;
+// }
+
+let printMe: (name: string, age: number) => void = function (
+  name: string,
+  age: number
+): void {};
+
+type stringNumberFunc = (a: string, b: number) => void;
+let f: stringNumberFunc = (name: string, age: number): void => {
+  console.log(name);
+};
+
+f("jack", 32);
+
+function fn(arg1: string, arg?: number): void {}
+
+type OptionalArgFunc = (a: string, b?: number) => void;
+
+let add = new Function("a", "b", `return a + b`);
+let result = add(1, 2);
+
+let add2 = function (a, b) {
+  return a + b;
+};
+
+const arrow1 = (a: number, b: number): number => {
+  return a + b;
+};
+
+const arrow2 = (a: number, b: number): number => a + b;
+
+// let f = () => {};
+const f = () => {};
