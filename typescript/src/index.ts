@@ -147,9 +147,9 @@ type OptionalArgFunc = (a: string, b?: number) => void;
 let add = new Function("a", "b", `return a + b`);
 let result = add(1, 2);
 
-let add2 = function (a, b) {
-  return a + b;
-};
+// let add2 = function (a, b) {
+//   return a + b;
+// };
 
 const arrow1 = (a: number, b: number): number => {
   return a + b;
@@ -158,4 +158,17 @@ const arrow1 = (a: number, b: number): number => {
 const arrow2 = (a: number, b: number): number => a + b;
 
 // let f = () => {};
-const f = () => {};
+// const f = () => {};
+
+// const f = (callback: () => void): void => callback();
+
+const calc = (value: number, cb: (a: number) => void): void => {
+  let add = (a: number, b: number) => a + b;
+  function multiply(a: number, b: number) {
+    return a * b;
+  }
+  let result = multiply(add(1, 2), value);
+  cb(result);
+};
+
+calc(30, (result: number) => console.log({ result }));
