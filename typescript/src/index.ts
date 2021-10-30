@@ -140,12 +140,12 @@ let f: stringNumberFunc = (name: string, age: number): void => {
 
 f("jack", 32);
 
-function fn(arg1: string, arg?: number): void {}
+// function fn(arg1: string, arg?: number): void {}
 
 type OptionalArgFunc = (a: string, b?: number) => void;
 
-let add = new Function("a", "b", `return a + b`);
-let result = add(1, 2);
+// let add = new Function("a", "b", `return a + b`);
+// let result = add(1, 2);
 
 // let add2 = function (a, b) {
 //   return a + b;
@@ -172,3 +172,28 @@ const calc = (value: number, cb: (a: number) => void): void => {
 };
 
 calc(30, (result: number) => console.log({ result }));
+
+const add2 =
+  (a: number): ((number: number) => number) =>
+  (b: number): number =>
+    a + b;
+
+const result2: number = add2(1)(2);
+
+console.log(result2);
+
+type NumberToNumberFunc = (number: number) => number;
+
+const add = (a: number): NumberToNumberFunc => {
+  const _add: NumberToNumberFunc = (b: number): number => {
+    return a + b;
+  };
+  return _add;
+};
+
+let fn: NumberToNumberFunc = add(1);
+let result3 = fn(2);
+console.log(result3);
+console.log(add(1)(2));
+
+const multiply = (a: number) => (b: number) => (c: number) => a * b * c;

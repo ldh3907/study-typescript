@@ -105,11 +105,49 @@ var obj = { name: "jack" };
 var name1 = obj.name;
 var name2 = obj.name;
 console.log(name1, name2);
-function add(a, b) {
-    return a + b;
-}
+// function add(a: number, b: number): number {
+//   return a + b;
+// }
 var printMe = function (name, age) { };
 var f = function (name, age) {
     console.log(name);
 };
-f("asasa", 122112);
+f("jack", 32);
+// let add = new Function("a", "b", `return a + b`);
+// let result = add(1, 2);
+// let add2 = function (a, b) {
+//   return a + b;
+// };
+var arrow1 = function (a, b) {
+    return a + b;
+};
+var arrow2 = function (a, b) { return a + b; };
+// let f = () => {};
+// const f = () => {};
+// const f = (callback: () => void): void => callback();
+var calc = function (value, cb) {
+    var add = function (a, b) { return a + b; };
+    function multiply(a, b) {
+        return a * b;
+    }
+    var result = multiply(add(1, 2), value);
+    cb(result);
+};
+calc(30, function (result) { return console.log({ result: result }); });
+var add2 = function (a) {
+    return function (b) {
+        return a + b;
+    };
+};
+var result2 = add2(1)(2);
+console.log(result2);
+var add = function (a) {
+    var _add = function (b) {
+        return a + b;
+    };
+    return _add;
+};
+var fn = add(1);
+var result3 = fn(2);
+console.log(fn);
+console.log(result3);
