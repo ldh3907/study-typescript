@@ -149,5 +149,12 @@ var add = function (a) {
 };
 var fn = add(1);
 var result3 = fn(2);
-console.log(fn);
 console.log(result3);
+console.log(add(1)(2));
+var multiply = function (a) { return function (b) { return function (c) { return a * b * c; }; }; };
+var makeData = function (name, age) {
+    if (age === void 0) { age = 10; }
+    var person = { name: name, age: age };
+    return person;
+};
+console.log(makeData("jack"));

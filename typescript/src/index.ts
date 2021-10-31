@@ -197,3 +197,27 @@ console.log(result3);
 console.log(add(1)(2));
 
 const multiply = (a: number) => (b: number) => (c: number) => a * b * c;
+
+const makeData = (name: string, age: number = 10) => {
+  const person = { name: name, age: age };
+  return person;
+};
+
+console.log(makeData("jack"));
+
+interface data2 {
+  name: string;
+  age: number;
+}
+
+const makeData2 = (name: string, age: number = 10): data2 => ({
+  name,
+  age,
+});
+
+type data3 = { name: string; age: number };
+
+const printData = ({ name, age }: data3): void =>
+  console.log(`name : ${name}, age : ${age}`);
+
+printData({ name: "jack", age: 10 });
